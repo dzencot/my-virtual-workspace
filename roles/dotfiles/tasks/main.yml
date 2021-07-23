@@ -1,0 +1,27 @@
+- name: Download dotfiles
+  git:
+    repo: https://github.com/mokevnin/dotfiles
+    dest: "{{ dotfiles }}"
+
+- name: Ubuntu prepare
+  make:
+    chdir: "{{ dotfiles }}"
+    target: ubuntu-prepare
+  become: yes
+
+- name: Nvim install
+  make:
+    chdir: "{{ dotfiles }}"
+    target: nvim-install
+
+- name: Install deps
+  # make:
+  #   chdir: "{{ dotfiles }}"
+  #   target: deps
+  shell:
+    cmd: make deps-npm
+    chdir: "{{ dotfiles }}"
+  become: yes
+
+- name: Nvim PlugUpdate
+  shell: nvim +PlugUpdate +qa

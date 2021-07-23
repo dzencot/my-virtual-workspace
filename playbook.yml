@@ -1,0 +1,8 @@
+---
+
+- hosts: all
+  roles:
+    - role: dependencies
+    - role: oh-my-zsh
+      become: yes
+    - role: dotfiles
