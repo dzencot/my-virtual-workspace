@@ -5,7 +5,7 @@ test:
 up:
 	vagrant up
 
-setup:
+install:
 	ansible-galaxy install -r requirements.yml
 
 vagrant-provision:
